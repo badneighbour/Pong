@@ -136,7 +136,7 @@ public class MenuModesDeJeu extends Menu{
   public void interagir(){
     if(mousePressed && !mouseHasBeenPressed){
       if(super.cliqueBouton(3)){
-        m = new MenuDepart();
+        m = new Compte_a_rebours();
       }
       else if (super.cliqueBouton(1)){
       m = new Compte_a_rebours();}
