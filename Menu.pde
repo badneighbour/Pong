@@ -139,7 +139,7 @@ public class MenuModesDeJeu extends Menu{
         m = new MenuDepart();
       }
       else if (super.cliqueBouton(1)){
-      m = new Jeu();}
+      m = new Compte_a_rebours();}
     }
     super.interagir();
   }
