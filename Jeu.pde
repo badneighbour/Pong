@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+
+// classe du jeu 1 joueur
+>>>>>>> master
 public class Jeu extends Ecran{
   
 
@@ -80,6 +85,8 @@ if (x<10){
 }
 }
 
+// classe permettant d'afficher le game over
+>>>>>>> master
 public class GameOver extends Ecran{
 public GameOver(){super();}
 public void afficher(){text("Game Over, votre score est de :"+scoreJeu,width/2,height/2);};
@@ -87,4 +94,47 @@ public void interagir(){if (mousePressed){
 m=new MenuDepart();
 }
 };
+}
+
+
+// classe pour le compte à rebours
+
+public class Compte_a_rebours extends Ecran{
+  
+  int temps;
+  
+public Compte_a_rebours(){
+  super();
+  temps=3;
+  }
+void dessiner(){
+  smooth();
+  ellipseMode(CENTER);
+
+  fill(255);
+  rect (w,z,25,86);
+  fill(255);
+  ellipse(x,y,20,20);
+  line(200,0,200,400);
+}
+
+void c_a_r() {
+  
+    if (temps == 0 ) {
+      temps = 0;
+      m=new Jeu();
+    }
+    else {
+      temps = 3 - millis()/1000;
+    }
+}
+void interagir(){
+
+}
+
+void afficher(){
+  dessiner();
+  c_a_r();
+  text(temps, width/2,height/2);
+}
 }
