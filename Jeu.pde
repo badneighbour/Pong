@@ -4,11 +4,16 @@ public class Jeu extends Ecran{
   
 
 boolean gameOver;
+
+/**
+*constructeur de Jeu
+*/
 public Jeu (){super(); 
               scoreJeu=0;
               gameOver=false;
               x=width/2;
               y=height/2;
+              
            }
 
 
@@ -23,7 +28,9 @@ public void interagir(){
  
   
 }
-
+/**
+*permet d'effacer ce qui a été afficher avant de réafficher
+*/
 void nettoyer(){
   background(0);
 }
@@ -36,8 +43,11 @@ fill(255);
 rect (w,z,25,86);
 fill(255);
 ellipse(x,y,20,20);
-line(200,0,200,400);
+line(width/2,0,width/2,height);
+stroke(153);
 }
+
+
 
 void bouger(){
 x=x+deplacementX;
@@ -95,14 +105,13 @@ m=new MenuDepart();
 
 public class Compte_a_rebours extends Ecran{
   
-  int temps;
+  int decompte;
   
 public Compte_a_rebours(){
   super();
-  temps=3 + millis()/1000;
-  }
+  decompte=3+millis()/1000;
   
-  // fonction permettant d'afficher ce que l'on veut
+  }
 void dessiner(){
   smooth();
   ellipseMode(CENTER);
@@ -110,31 +119,31 @@ void dessiner(){
   fill(255);
   rect (w,z,25,86);
   fill(255);
-  ellipse(x,y,20,20);
-  line(200,0,200,400);
+  
+  line(width/2,0,width/2,height);
 }
-//fonction qui fait effectivement le compte à rebours
+
 void c_a_r() {
   
-    if (temps == 0 ) {
-      m=new Jeu();
+    if (temps == decompte ) {
+           m=new Jeu();
     }
-    else {
-      temps = 3 - millis()/1000;
-    }
+    else{
+    temps=millis()/1000;
+    };
+   
 }
 void interagir(){
 
 }
-// permet d'effacer ce qu'il y avait d'afficher avant d'afficher de nouveau
 void nettoyer(){
   background(0);
 }
-// permet de faire l'affichage complet de la fonction
+
 void afficher(){
   nettoyer();
   dessiner();
   c_a_r();
-  text(temps, width/2,height/2);
+  text((decompte-temps), width/2,height/2);
 }
 }
