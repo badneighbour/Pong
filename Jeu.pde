@@ -101,6 +101,8 @@ public Compte_a_rebours(){
   super();
   temps=3;
   }
+  
+  // fonction permettant d'afficher ce que l'on veut
 void dessiner(){
   smooth();
   ellipseMode(CENTER);
@@ -111,7 +113,7 @@ void dessiner(){
   ellipse(x,y,20,20);
   line(200,0,200,400);
 }
-
+//fonction qui fait effectivement le compte à rebours
 void c_a_r() {
   
     if (temps == 0 ) {
@@ -125,8 +127,13 @@ void c_a_r() {
 void interagir(){
 
 }
-
+// permet d'effacer ce qu'il y avait d'afficher avant d'afficher de nouveau
+void nettoyer(){
+  background(0);
+}
+// permet de faire l'affichage complet de la fonction
 void afficher(){
+  nettoyer();
   dessiner();
   c_a_r();
   text(temps, width/2,height/2);
