@@ -15,4 +15,5 @@ application.windows32
 application.windows64
 application.macosx
 *.xml
+code
 >>>>>>> branch 'master' of https://github.com/badneighbour/Pong.git

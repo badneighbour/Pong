@@ -1,7 +1,8 @@
+//La classe Menu représente les menus qui s'affichent à l'écran avant d'entrer dans le jeu
 public abstract class Menu extends Ecran{
   
-  private int compteur;
-  protected boolean mouseHasBeenPressed;
+  private int compteur; //utile pour laisser quelques images avant de changer de menu lors d'un clique, comme on a une fréquence de rafraichissement égale à 60Hz
+  protected boolean mouseHasBeenPressed; //de même que pour compteur, permet de vérifier si un bouton a déjà été cliqué une demi seconde avant
   
   public Menu(){
     super();
@@ -144,7 +145,7 @@ public class MenuModesDeJeu extends Menu{
     super.interagir();
   }
 }
-
+//Ecran qui sert à enregistrer le score si besoin 
 /*public class EnregistrementScore extends Ecran {
   int rangScore;
   String pseudonyme;

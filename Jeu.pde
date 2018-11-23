@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-=======
-
 // classe du jeu 1 joueur
->>>>>>> master
 public class Jeu extends Ecran{
   
 
@@ -86,7 +82,6 @@ if (x<10){
 }
 
 // classe permettant d'afficher le game over
->>>>>>> master
 public class GameOver extends Ecran{
 public GameOver(){super();}
 public void afficher(){text("Game Over, votre score est de :"+scoreJeu,width/2,height/2);};
