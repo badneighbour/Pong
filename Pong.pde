@@ -1,7 +1,7 @@
 import ketai.ui.*;
 color[] couleurs = {color(0, 0, 0), color(230, 190, 0)}; // contient la couleur de premier plan et la couleur de fond
 float[] dimBouton = new float[4]; //contient les largeurs et les hauteurs exterieures et interieures d'un bouton de menu
-String[] scores = {"0", "0", "0", "0", "0", "-", "-", "-", "-", "-"}; //contient les 5 meilleurs scores puis leur joueur
+String[] scores = {"0", "0", "0", "0", "0", "-", "-", "-", "-", "-"}; //contient les 5 meilleurs scores puis leur joueur, la variable est inialisée au cas où le fichier score a un soucis
 int vitesse = 10;
 Ecran m = new MenuDepart();
 int deplacementX;
