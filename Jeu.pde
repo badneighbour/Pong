@@ -1,3 +1,4 @@
+
 // classe du jeu 1 joueur
 public class Jeu extends Ecran{
   
@@ -80,7 +81,6 @@ if (x<10){
 }
 }
 }
-
 // classe permettant d'afficher le game over
 public class GameOver extends Ecran{
 public GameOver(){super();}
@@ -91,7 +91,6 @@ m=new MenuDepart();
 };
 }
 
-
 // classe pour le compte à rebours
 
 public class Compte_a_rebours extends Ecran{
@@ -100,8 +99,10 @@ public class Compte_a_rebours extends Ecran{
   
 public Compte_a_rebours(){
   super();
-  temps=3;
+  temps=3 + millis()/1000;
   }
+  
+  // fonction permettant d'afficher ce que l'on veut
 void dessiner(){
   smooth();
   ellipseMode(CENTER);
@@ -112,11 +113,10 @@ void dessiner(){
   ellipse(x,y,20,20);
   line(200,0,200,400);
 }
-
+//fonction qui fait effectivement le compte à rebours
 void c_a_r() {
   
     if (temps == 0 ) {
-      temps = 0;
       m=new Jeu();
     }
     else {
@@ -126,8 +126,13 @@ void c_a_r() {
 void interagir(){
 
 }
-
+// permet d'effacer ce qu'il y avait d'afficher avant d'afficher de nouveau
+void nettoyer(){
+  background(0);
+}
+// permet de faire l'affichage complet de la fonction
 void afficher(){
+  nettoyer();
   dessiner();
   c_a_r();
   text(temps, width/2,height/2);
