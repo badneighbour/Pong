@@ -19,7 +19,7 @@ public abstract class Menu extends Ecran{
       mouseHasBeenPressed = false;
     }
   }
-  
+  //méthode qui affiche les boutons du menus sous forme de rectangle contenant le message avec i indiquant que c'est soit le bouton du haut, soit le bouton du milieu, soit celui du bas 
   public void afficheBouton(int numeroBouton, String message){
     fill(couleurs[0]);
     rect(width/2, numeroBouton*height/4, dimBouton[0], dimBouton[1], 10);
@@ -28,7 +28,7 @@ public abstract class Menu extends Ecran{
     fill(couleurs[0]);
     text(message, width/2, numeroBouton*height/4, dimBouton[2], dimBouton[3]);
   }
-  
+  //méthode qui regarde lorsqu'il y a un clique si celui-ci se situe sur le bouton  numéro "numéroBouton" et renvoie vrai si c'est le cas 
   public boolean cliqueBouton(int numeroBouton){
     boolean boutonX = (width-dimBouton[0]<2*mouseX) && (2*mouseX<width+dimBouton[0]);
     boolean boutonY = (numeroBouton*height/2-dimBouton[1]<2*mouseY) && (2*mouseY<numeroBouton*height/2+dimBouton[1]);
@@ -38,7 +38,7 @@ public abstract class Menu extends Ecran{
     return (boutonX && boutonY);
   }
 }
-
+//menu de départ qui renvoie vers le choix du mode de jeu, le menu affichant les scores ou le menu des paramètres
 public class MenuDepart extends Menu{
   public MenuDepart(){
     super();
@@ -66,7 +66,7 @@ public class MenuDepart extends Menu{
     super.interagir();
   }  
 }
-
+//Menu qui affiche les scores et qui possède un seul bouton qui renvoie au menu de départ
 public class MenuScores extends Menu{
   public MenuScores(){
     super();
@@ -90,7 +90,7 @@ public class MenuScores extends Menu{
   }
 
 }
-
+//Menu qui gère les paramètres. En cours de construction.
 public class MenuOptions extends Menu{
     public void afficher(){
     
@@ -98,7 +98,7 @@ public class MenuOptions extends Menu{
     super.afficheBouton(2, "Réinitialiser les scores");
     super.afficheBouton(3, "Retour");
   }
-  
+  //Méthode qui permet de réinitialiser les scores dans la session de jeu actuelle et aussi dans le fichier de sauvegarde pour les sessions suivantes
   public void reinitialiserScores(){
     PrintWriter output = createWriter("scores");
     for(int i = 0; i < 5; i++){
@@ -125,7 +125,7 @@ public class MenuOptions extends Menu{
     super.interagir();
   }
 }
-
+//Menu qui permet au joueur de choisir le mode de jeu. En construction ...
 public class MenuModesDeJeu extends Menu{
   public void afficher(){
     
@@ -145,6 +145,7 @@ public class MenuModesDeJeu extends Menu{
     super.interagir();
   }
 }
+
 //Ecran qui sert à enregistrer le score si besoin 
 /*public class EnregistrementScore extends Ecran {
   int rangScore;
