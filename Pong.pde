@@ -1,52 +1,276 @@
-color[] couleurs = {color(0, 0, 0), color(230, 190, 0)}; // contient la couleur de premier plan et la couleur de fond
-float[] dimBouton = new float[4]; //contient les largeurs et les hauteurs exterieures et interieures d'un bouton de menu
-String[] scores = {"0", "0", "0", "0", "0", "-", "-", "-", "-", "-"}; //contient les 5 meilleurs scores puis leur joueur
-int vitesse = 10;
-Ecran m = new MenuDepart();
-int deplacementX;
-int deplacementY;
-int x; //position de la balle
-int y;
-float w; // position du plateau du joueur 1 sur l'axe x
-float z;// position du plateau du joueur 1 sur l'axe y
-float w2;// position du plateau du joueur 2 sur l'axe x
-float z2;// position du plateau du joueur 2 sur l'axe y
-int scoreJeu;
-int temps;
 
-void setup(){
-  fullScreen();
-  dimBouton[0] = width/1.5;
-  dimBouton[1] = height/4.5;
-  dimBouton[2] = dimBouton[0] * 0.96;
-  dimBouton[3] = dimBouton[1] * 0.9;
-  x=width/2;
-  y=height/2;
-  deplacementX=6;
-  deplacementY=-3;
-  w=15;
-  w2=width-15;
-  z=60;
-  z2=60;
-  scoreJeu=0;
-  temps = millis();
-  BufferedReader reader = createReader("scores");
-  try{
-    for(int i = 0; i<10; i++){
-        scores[i] = reader.readLine();
+// classe du jeu 1 joueur
+public class Jeu extends Ecran {
+
+
+
+
+  /**
+   *constructeur de Jeu
+   */
+  public Jeu () {
+    super(); 
+    scoreJeu=0;
+    x=width/2;
+    y=height/2;
+    deplacementX=6;
+    deplacementY=-3;
+  }
+
+
+  public void  afficher () {
+    nettoyer();
+    bouger();
+    rebondir();
+    dessiner();
+  }
+
+  public void interagir() {
+  }
+  /**
+   *permet d'effacer ce qui a été afficher avant de réafficher
+   */
+  void nettoyer() {
+    background(0);
+  }
+
+  void dessiner() {
+    smooth();
+    ellipseMode(CENTER);
+
+    fill(255);
+    rect (w, z, 25, 86);
+    fill(255);
+    ellipse(x, y, 20, 20);
+    line(width/2, 0, width/2, height);
+    stroke(153);
+  }
+
+
+
+  void bouger() {
+    x=x+deplacementX;
+    y=y+deplacementY;
+    if (mouseY<=z-5) {
+    z=z-5;
+    }
+    else if (mouseY>=z+5){z=z+5;}
+    
+  }
+
+  void rebondir() {
+    //trop a droite et deplacement horizontal positif
+    if (x> width-10 && deplacementX>0)
+    {
+      deplacementX=-deplacementX;
+      deplacementX=deplacementX*1.05;
+      deplacementY=deplacementY*1.05;
+      deplacementY = deplacementY + random(-1,1);
+    }
+
+    // si on est trop haut
+    if (y<10 && deplacementY<0)
+    {
+      deplacementY=-deplacementY;
+      deplacementY = deplacementY + random(-1,1);
+    }
+
+    //si on est trop bas
+    if (y>height-10 && deplacementY>0)
+    {
+      deplacementY=-deplacementY;
+      deplacementY = deplacementY + random(-1,1);
+    }
+
+    // quand on touche le plateau
+    if ( x-10 < w+25 && (y > z-43 && y< z+43))
+    {
+      deplacementX=-deplacementX;
+      scoreJeu+=1;
+      deplacementY = deplacementY + random(-1,1);
+    }
+
+    //si on depasse le plateau
+    if (x<10) {
+      m=new GameOver();
+    }
+    
+  }
+}
+
+
+// classe permettant d'afficher le game over
+public class GameOver extends Ecran {
+  public GameOver() {
+    super();
+  }
+  public void afficher() {
+    text("Game Over, votre score est de :"+scoreJeu, width/2, height/2);
+  };
+  public void interagir() {
+    if (mousePressed) {
+      m=new MenuDepart();
+    }
+  };
+}
+
+// classe pour le compte à rebours
+
+public class Compte_a_rebours extends Ecran {
+
+  int decompte;
+
+  public Compte_a_rebours() {
+    super();
+    decompte=3+millis()/1000;
+  }
+  void dessiner() {
+    smooth();
+    ellipseMode(CENTER);
+
+    fill(255);
+    rect (w, z, 25, 86);
+    fill(255);
+
+    line(width/2, 0, width/2, height);
+  }
+
+  void c_a_r() {
+
+    if (temps == decompte ) {
+      m=new Jeu();
+    } else {
+      temps=millis()/1000;
+    };
+  }
+  void interagir() {
+  }
+  void nettoyer() {
+    background(0);
+  }
+
+  void afficher() {
+    nettoyer();
+    dessiner();
+    c_a_r();
+    text((decompte-temps), width/2, height/2);
+  }
+}
+
+public class JeuDeux extends Ecran {
+  public JeuDeux () {
+    super(); 
+    scoreJeu=0;
+    x=width/2;
+    y=height/2;
+    deplacementX=6;
+    deplacementY=-3;
+  }
+
+  public void interagir() {
+  }
+  public void  afficher () {
+    nettoyer();
+    bouger();
+    rebondir();
+    dessiner();
+  }
+
+  /**
+   *permet d'effacer ce qui a été afficher avant de réafficher
+   */
+  void nettoyer() {
+    background(0);
+  }
+
+  //permet de déplacer la balle et les plateaux
+    void bouger() {
+    x=x+deplacementX;
+    y=y+deplacementY;
+    if (touches.length==0){
+      
+    } 
+    else if (touches.length==1){
+       if (touches[0].y<=z-5) {
+        z=z-5;
+      }
+      else if (touches[0].y>=z+5){
+        z=z+5;
       }
     }
-  catch(IOException e){
-    vitesse = 10;
+    else if (touches[0].x<touches[1].x) {
+      if (touches[0].y<=z-5) {
+        z=z-5;
+      }
+      else if (touches[0].y>=z+5){
+        z=z+5;
+      }
+      if (touches[1].y<=z2-5) {
+        z2=z2-5;
+        }
+      else if (touches[1].y>=z2+5){
+        z2=z2+5;}
+    } else  {
+      if (touches[1].y<=z-5) {
+        z=z-5;
+      }
+      else if (touches[1].y>=z+5){
+        z=z+5;
+      }
+      if (touches[0].y<=z2-5) {
+        z2=z2-5;
+        }
+      else if (touches[0].y>=z2+5){
+        z2=z2+5;}
+    }
   }
-  background(couleurs[1]);
-  rectMode(CENTER);
-  textAlign(CENTER, CENTER);
-  textSize(sqrt(width*height)/15);
-} 
 
+  //Permet de dessiner la balle les plateaux et la ligne centrale
+   void dessiner() {
+    smooth();
+    ellipseMode(CENTER);
 
-void draw(){
-  m.afficher();
-  m.interagir();
+    fill(255);
+    rect (w, z, 25, 86);
+    fill(255);
+    rect(w2, z2, 25, 86);
+    fill(255);
+    ellipse(x, y, 20, 20);
+    line(width/2, 0, width/2, height);
+    stroke(153);
+  }
+
+  void rebondir() {
+    
+    
+
+    // si on est trop haut
+    if (y<10 && deplacementY<0)
+    {
+      deplacementY=-deplacementY;
+    }
+
+    //si on est trop bas
+    if (y>height-10 && deplacementY>0)
+    {
+      deplacementY=-deplacementY;
+    }
+
+    // quand on touche le plateau du joueur 1
+    if ( x-10 < w+25 && (y > z-43 && y< z+43))
+    {
+      deplacementX=-deplacementX;
+     scoreJeu++;
+    }
+//quand on touche le plateau du joueur 2
+if ( x+10 > w2-25 && (y > z2-43 && y< z2+43))
+    {
+      deplacementX=-deplacementX;
+     scoreJeu++;
+    }
+    //si on depasse le plateau
+    if (x<=0 || x>= width) {
+      m=new GameOver();
+    }
+  }
 }
