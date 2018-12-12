@@ -153,7 +153,7 @@ public class EnregistrementScore extends Ecran {
     super();
     this.rangScore = rangScore;
     this.pseudonyme = "";
-    //KetaiKeyboard.toggle(this);
+    KetaiKeyboard.toggle(this);
   }
 
   public void afficher() {
