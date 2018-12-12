@@ -3,7 +3,7 @@ color[] couleurs = {color(0, 0, 0), color(230, 190, 0)}; // contient la couleur 
 float[] dimBouton = new float[4]; //contient les largeurs et les hauteurs exterieures et interieures d'un bouton de menu
 String[] scores = {"0", "0", "0", "0", "0", "-", "-", "-", "-", "-"}; //contient les 5 meilleurs scores puis leur joueur, la variable est inialisée au cas où le fichier score a un soucis
 int vitesse = 10;
-Ecran m = new MenuDepart();
+Ecran m = new MenuDepart(); //variable qui gère l'écran en cours
 int deplacementX;
 int deplacementY;
 int x;
