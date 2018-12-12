@@ -126,27 +126,31 @@ public class Compte_a_rebours extends Ecran {
   public Compte_a_rebours(int mode) {
     super();
     decompte=3+millis()/1000;
-    modesuivant = mode;  }
+    modesuivant = mode;
+  }
   void dessiner() {
     smooth();
     ellipseMode(CENTER);
 
     fill(255);
-    rect (w, z, 25, 86);
+    rect (w, z, 25, 2*tailleraquette);
     fill(255);
 
     line(width/2, 0, width/2, height);
-    if (modesuivant==2){
-    fill(255);
-    rect(w2, z2, 25, 86);}
+    if (modesuivant==2) {
+      fill(255);
+      rect(w2, z2, 25, 2*tailleraquette);
+    }
   }
 
   void c_a_r() {
 
     if (temps == decompte ) {
-      if(modesuivant==1){
-      m=new Jeu();}
-      else{m=new JeuDeux();}
+      if (modesuivant==1) {
+        m=new Jeu();
+      } else {
+        m=new JeuDeux();
+      }
     } else {
       temps=millis()/1000;
     };
@@ -198,39 +202,39 @@ public class JeuDeux extends Ecran {
     if (touches.length==0) {
     } else if (touches.length==1) {
       if (touches[0].x <=width/2) {
-        if (touches[0].y<=z-5) {
-          z=z-5;
-        } else if (touches[0].y>=z+5) {
-          z=z+5;
+        if (touches[0].y<=z-vitesseraquette) {
+          z=z-vitesseraquette;
+        } else if (touches[0].y>=z+vitesseraquette) {
+          z=z+vitesseraquette;
         }
       } else {
-        if (touches[0].y<=z2-5) {
-          z2=z2-5;
-        } else if (touches[0].y>=z2+5) {
-          z2=z2+5;
+        if (touches[0].y<=z2-vitesseraquette) {
+          z2=z2-vitesseraquette;
+        } else if (touches[0].y>=z2+vitesseraquette) {
+          z2=z2+vitesseraquette;
         }
       }
     } else if (touches[0].x<touches[1].x) {
-      if (touches[0].y<=z-5) {
-        z=z-5;
-      } else if (touches[0].y>=z+5) {
-        z=z+5;
+      if (touches[0].y<=z-vitesseraquette) {
+        z=z-vitesseraquette;
+      } else if (touches[0].y>=z+vitesseraquette) {
+        z=z+vitesseraquette;
       }
-      if (touches[1].y<=z2-5) {
-        z2=z2-5;
-      } else if (touches[1].y>=z2+5) {
-        z2=z2+5;
+      if (touches[1].y<=z2-vitesseraquette) {
+        z2=z2-vitesseraquette;
+      } else if (touches[1].y>=z2+vitesseraquette) {
+        z2=z2+vitesseraquette;
       }
     } else {
-      if (touches[1].y<=z-5) {
-        z=z-5;
-      } else if (touches[1].y>=z+5) {
-        z=z+5;
+      if (touches[1].y<=z-vitesseraquette) {
+        z=z-vitesseraquette;
+      } else if (touches[1].y>=z+vitesseraquette) {
+        z=z+vitesseraquette;
       }
-      if (touches[0].y<=z2-5) {
-        z2=z2-5;
-      } else if (touches[0].y>=z2+5) {
-        z2=z2+5;
+      if (touches[0].y<=z2-vitesseraquette) {
+        z2=z2-vitesseraquette;
+      } else if (touches[0].y>=z2+vitesseraquette) {
+        z2=z2+vitesseraquette;
       }
     }
   }
@@ -241,9 +245,9 @@ public class JeuDeux extends Ecran {
     ellipseMode(CENTER);
 
     fill(255);
-    rect (w, z, 25, 86);
+    rect (w, z, 25, 2*tailleraquette);
     fill(255);
-    rect(w2, z2, 25, 86);
+    rect(w2, z2, 25, 2*tailleraquette);
     fill(255);
     ellipse(x, y, 20, 20);
     line(width/2, 0, width/2, height);
@@ -267,20 +271,39 @@ public class JeuDeux extends Ecran {
     }
 
     // quand on touche le plateau du joueur 1
-    if ( x-10 < w+25 && (y > z-43 && y< z+43))
+    if ( x-10 < w+25 && (y > z-tailleraquette && y< z+tailleraquette))
     {
       deplacementX=-deplacementX;
+      deplacementX=deplacementX*incrementationballe;
+      deplacementY=deplacementY*incrementationballe;
+      deplacementY = deplacementY + random(-1, 1);
       scoreJeu++;
     }
     //quand on touche le plateau du joueur 2
-    if ( x+10 > w2-25 && (y > z2-43 && y< z2+43))
+    if ( x+10 > w2-25 && (y > z2-tailleraquette && y< z2+tailleraquette))
     {
       deplacementX=-deplacementX;
+      deplacementX=deplacementX*incrementationballe;
+      deplacementY=deplacementY*incrementationballe;
+      deplacementY = deplacementY + random(-1, 1);
       scoreJeu++;
     }
     //si on depasse le plateau
-    if (x<=0 || x>= width) {
-      m=new GameOver();
+    if (x<=0) {
+      scoreJ2++;
+      if (scoreJ2<nombrePoint) {
+        m = new Compte_a_rebours(2);
+      } else {
+        m = new GameOver();
+      }
+    }
+    if (x>width) {
+      scoreJ1++;
+      if (scoreJ1<nombrePoint) {
+        m = new Compte_a_rebours(2);
+      } else {
+        m = new GameOver();
+      }
     }
   }
 }
