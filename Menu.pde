@@ -134,13 +134,16 @@ public class MenuModesDeJeu extends Menu{
     super.afficheBouton(3, "Retour");
   }
   
-  public void interagir(){
-    if(mousePressed && !mouseHasBeenPressed){
-      if(super.cliqueBouton(3)){
-        m = new Compte_a_rebours();
+  public void interagir() {
+    if (mousePressed && !mouseHasBeenPressed) {
+      if (super.cliqueBouton(3)) {
+        m = new MenuDepart();
+      } else if (super.cliqueBouton(1)) {
+        m = new Compte_a_rebours(1);
       }
-      else if (super.cliqueBouton(1)){
-      m = new Compte_a_rebours();}
+      else if (super.cliqueBouton(2)){
+      m = new Compte_a_rebours(2);
+      }
     }
     super.interagir();
   }
