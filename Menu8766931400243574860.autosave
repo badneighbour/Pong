@@ -1,4 +1,3 @@
-import ketai.ui.*;
 //La classe Menu représente les menus qui s'affichent à l'écran avant d'entrer dans le jeu
 public abstract class Menu extends Ecran {
 
@@ -90,7 +89,8 @@ public class MenuScores extends Menu {
 //Menu qui gère les paramètres. En cours de construction.
 public class MenuOptions extends Menu {
   public void afficher() {
-    super.afficheBouton(1, "Difficulte");
+
+    super.afficheBouton(1, "Vitesse");
     super.afficheBouton(2, "Reinitialiser les scores");
     super.afficheBouton(3, "Retour");
   }
@@ -117,59 +117,10 @@ public class MenuOptions extends Menu {
       if (super.cliqueBouton(2)) {
         this.reinitialiserScores();
       }
-      if (super.cliqueBouton(1)){m=new MenuDifficulte();}
     }
     super.interagir();
   }
-
-
-
-//
-public class MenuDifficulte extends Menu{
-  public void afficher() {
-
-    super.afficheBouton(1, "Facile");
-    super.afficheBouton(2, "Moyen");
-    super.afficheBouton(3, "Difficile");
-  }
-  
-  public void interagir(){
-    if (mousePressed && !mouseHasBeenPressed) {
-      if (super.cliqueBouton(1)) {
-          vitessedepX= 4;
-          vitessedepY= 2;
-          vitesseraquette = 10;
-          tailleraquette=60;
-          incrementationballe =1.05;
-          m = new MenuDepart();
-      }
-      if (super.cliqueBouton(2)) {
-          vitessedepX= 6;
-          vitessedepY= 3;
-          vitesseraquette = 8;
-          tailleraquette=50;
-          incrementationballe =1.1;
-          m = new MenuDepart();
-      }
-      if (super.cliqueBouton(3)){
-          vitessedepX= 8;
-          vitessedepY= 4;
-          vitesseraquette = 5;
-          tailleraquette=45;
-          incrementationballe =1.15;
-          m = new MenuDepart();
-    }
-    }
-    super.interagir();
-  }
-
-  
-  }
-  
-
 }
-
-
 //Menu qui permet au joueur de choisir le mode de jeu. En construction ...
 public class MenuModesDeJeu extends Menu {
   public void afficher() {
@@ -198,20 +149,20 @@ public class MenuModesDeJeu extends Menu {
 public class EnregistrementScore extends Ecran {
   int rangScore;
   String pseudonyme;
-  
   public EnregistrementScore(int rangScore) {
     super();
     this.rangScore = rangScore;
     this.pseudonyme = "";
-    KetaiKeyboard.toggle(papplet);
+    //KetaiKeyboard.toggle(this);
   }
+
   public void afficher() {
     background(couleurs[1]);
   }
 
   public void interagir() {
     if(keyPressed){
-      if(key == ENTER){
+      if(key == '\n'){
         m = new MenuDepart();
       }
       else if(key == '\b' && pseudonyme.length() > 0){

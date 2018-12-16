@@ -13,8 +13,8 @@ public class Jeu extends Ecran {
     scoreJeu=0;
     x=width/2;
     y=height/2;
-    deplacementX=6;
-    deplacementY=-3;
+    deplacementX=vitessedepX;
+    deplacementY=-vitessedepY;
   }
 
 
@@ -39,7 +39,7 @@ public class Jeu extends Ecran {
     ellipseMode(CENTER);
 
     fill(255);
-    rect (w, z, 25, 86);
+    rect (w, z, 25, 2*tailleraquette);
     fill(255);
     ellipse(x, y, 20, 20);
     line(width/2, 0, width/2, height);
@@ -53,10 +53,10 @@ public class Jeu extends Ecran {
     y=y+deplacementY;
     if (touches.length==0) {
     } else if (touches.length==1) {
-      if (touches[0].y<=z-5) {
-        z=z-5;
-      } else if (touches[0].y>=z+5) {
-        z=z+5;
+      if (touches[0].y<=z-vitesseraquette) {
+        z=z-vitesseraquette;
+      } else if (touches[0].y>=z+vitesseraquette) {
+        z=z+vitesseraquette;
       }
     }
   }
@@ -66,8 +66,8 @@ public class Jeu extends Ecran {
     if (x> width-10 && deplacementX>0)
     {
       deplacementX=-deplacementX;
-      deplacementX=deplacementX*1.05;
-      deplacementY=deplacementY*1.05;
+      deplacementX=deplacementX*incrementationballe;
+      deplacementY=deplacementY*incrementationballe;
       deplacementY = deplacementY + random(-1, 1);
     }
 
@@ -86,7 +86,7 @@ public class Jeu extends Ecran {
     }
 
     // quand on touche le plateau
-    if ( x-10 < w+25 && (y > z-43 && y< z+43))
+    if ( x-10 < w+25 && (y > z-tailleraquette && y< z+tailleraquette))
     {
       deplacementX=-deplacementX;
       scoreJeu+=1;
@@ -111,7 +111,7 @@ public class GameOver extends Ecran {
   };
   public void interagir() {
     if (mousePressed) {
-      m=new MenuDepart();
+      m=new EnregistrementScore(0);
     }
   };
 }
@@ -171,8 +171,8 @@ public class JeuDeux extends Ecran {
     scoreJeu=0;
     x=width/2;
     y=height/2;
-    deplacementX=6;
-    deplacementY=-3;
+    deplacementX=vitessedepX;
+    deplacementY=-vitessedepY;
   }
 
   public void interagir() {
