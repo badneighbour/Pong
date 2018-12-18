@@ -167,7 +167,7 @@ public class MenuOptions extends Menu {
 }
 
 
-//Menu qui permet au joueur de choisir le mode de jeu. En construction ...
+//Menu qui permet au joueur de choisir le mode de jeu.
 public class MenuModesDeJeu extends Menu {
   public void afficher() {
 
