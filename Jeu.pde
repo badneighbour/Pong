@@ -133,7 +133,7 @@ public class Compte_a_rebours extends Ecran {
   }
   void dessiner() {
    if (modesuivant==2){
-        text(scoreJeu,width/2-width/10, height/10);
+        text(scoreJ1,width/2-width/10, height/10);
         text(scoreJ2,width/2+width/10, height/10);}
     smooth();
     ellipseMode(CENTER);
