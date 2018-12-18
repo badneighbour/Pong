@@ -15,6 +15,7 @@ int scoreJeu;
 int temps;
 int scoreJ1;
 int scoreJ2;
+int nombrePoint;
 
 // paramètres
 float vitessedepX;
