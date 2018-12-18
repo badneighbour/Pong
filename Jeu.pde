@@ -98,7 +98,7 @@ public class Jeu extends Ecran {
 
     //si on depasse le plateau
     if (x<10) {
-      m=new GameOver();
+      m=new GameOver(1);
     }
   }
 }
@@ -106,11 +106,19 @@ public class Jeu extends Ecran {
 
 // classe permettant d'afficher le game over
 public class GameOver extends Ecran {
-  public GameOver() {
+int mode;
+  public GameOver(int prece) {
     super();
+    mode= precedant;
   }
-  public void afficher() {
-    text("Game Over, votre score est de :"+scoreJeu, width/2, height/2);
+    public void afficher() {
+    if (mode==1){
+    text("Game Over, votre score est de :"+scoreJeu, width/2, height/2);}
+    else {if (scoreJ1>scoreJ2){
+              text("Bravo au Joueur 1 !", width/2, height/2);}
+          else {
+               text("Bravo au Joueur 2 !"+scoreJeu, width/2, height/2);}
+      }
   };
   public void interagir() {
     if (mousePressed) {
@@ -301,10 +309,10 @@ public class JeuDeux extends Ecran {
     //si on depasse le plateau
     if (x<=0){scoreJ2++;if (scoreJ2<nombrePoint){
     m = new Compte_a_rebours(2);}
-  else {m = new GameOver();}}
+  else {m = new GameOver(2);}}
     if (x>width){scoreJ1++;if (scoreJ1<nombrePoint){
     m = new Compte_a_rebours(2);}
-  else {m = new GameOver();}}
+  else {m = new GameOver(2);}}
     
   }
 }
