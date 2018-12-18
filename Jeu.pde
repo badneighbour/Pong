@@ -249,7 +249,7 @@ public class JeuDeux extends Ecran {
 
   //Permet de dessiner la balle les plateaux et la ligne centrale
   void dessiner() {
-    text(scoreJeu,width/2-width/10, height/10);
+    text(scoreJ1,width/2-width/10, height/10);
     text(scoreJ2,width/2+width/10, height/10);
     smooth();
     ellipseMode(CENTER);
