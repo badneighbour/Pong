@@ -10,11 +10,13 @@ public class Jeu extends Ecran {
    */
   public Jeu () {
     super(); 
-    scoreJeu=0;
+    
     x=width/2;
     y=height/2;
     deplacementX=vitessedepX;
     deplacementY=-vitessedepY;
+    scoreJeu=0;
+    
   }
 
 
@@ -35,15 +37,18 @@ public class Jeu extends Ecran {
   }
 
   void dessiner() {
+    
     smooth();
     ellipseMode(CENTER);
-
+    //fill(255);
+    //text(scoreJeu,width/2, height/10);
     fill(255);
     rect (w, z, 25, 2*tailleraquette);
     fill(255);
     ellipse(x, y, 20, 20);
     line(width/2, 0, width/2, height);
     stroke(153);
+    
   }
 
 
@@ -140,6 +145,7 @@ public class Compte_a_rebours extends Ecran {
     if (modesuivant==2) {
       fill(255);
       rect(w2, z2, 25, 2*tailleraquette);
+      
     }
   }
 
@@ -172,11 +178,13 @@ public class Compte_a_rebours extends Ecran {
 public class JeuDeux extends Ecran {
   public JeuDeux () {
     super(); 
-    scoreJeu=0;
+    
     x=width/2;
     y=height/2;
     deplacementX=vitessedepX;
-    deplacementY=-vitessedepY;
+    float r= random(1);
+    if (r>0.5) {deplacementY=-vitessedepY ;} else {deplacementY=vitessedepY ;}
+    
   }
 
   public void interagir() {
@@ -241,6 +249,8 @@ public class JeuDeux extends Ecran {
 
   //Permet de dessiner la balle les plateaux et la ligne centrale
   void dessiner() {
+    text(scoreJeu,width/2-width/10, height/10);
+    text(scoreJ2,width/2+width/10, height/10);
     smooth();
     ellipseMode(CENTER);
 
@@ -252,6 +262,7 @@ public class JeuDeux extends Ecran {
     ellipse(x, y, 20, 20);
     line(width/2, 0, width/2, height);
     stroke(153);
+    
   }
 
   void rebondir() {
@@ -277,7 +288,6 @@ public class JeuDeux extends Ecran {
       deplacementX=deplacementX*incrementationballe;
       deplacementY=deplacementY*incrementationballe;
       deplacementY = deplacementY + random(-1, 1);
-      scoreJeu++;
     }
     //quand on touche le plateau du joueur 2
     if ( x+10 > w2-25 && (y > z2-tailleraquette && y< z2+tailleraquette))
@@ -286,24 +296,15 @@ public class JeuDeux extends Ecran {
       deplacementX=deplacementX*incrementationballe;
       deplacementY=deplacementY*incrementationballe;
       deplacementY = deplacementY + random(-1, 1);
-      scoreJeu++;
+      
     }
     //si on depasse le plateau
-    if (x<=0) {
-      scoreJ2++;
-      if (scoreJ2<nombrePoint) {
-        m = new Compte_a_rebours(2);
-      } else {
-        m = new GameOver();
-      }
-    }
-    if (x>width) {
-      scoreJ1++;
-      if (scoreJ1<nombrePoint) {
-        m = new Compte_a_rebours(2);
-      } else {
-        m = new GameOver();
-      }
-    }
+    if (x<=0){scoreJ2++;if (scoreJ2<nombrePoint){
+    m = new Compte_a_rebours(2);}
+  else {m = new GameOver();}}
+    if (x>width){scoreJ1++;if (scoreJ1<nombrePoint){
+    m = new Compte_a_rebours(2);}
+  else {m = new GameOver();}}
+    
   }
 }
