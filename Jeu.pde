@@ -111,7 +111,7 @@ public class GameOver extends Ecran {
   };
   public void interagir() {
     if (mousePressed) {
-      m=new EnregistrementScore(0);
+      m=new MenuDepart();
     }
   };
 }

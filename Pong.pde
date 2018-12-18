@@ -1,7 +1,7 @@
 PApplet papplet = this;
 color[] couleurs = {color(0, 0, 0), color(230, 190, 0)}; // contient la couleur de premier plan et la couleur de fond
 float[] dimBouton = new float[4]; //contient les largeurs et les hauteurs exterieures et interieures d'un bouton de menu
-String[] scores = {"0", "0", "0", "0", "0", "-", "-", "-", "-", "-"}; //contient les 5 meilleurs scores puis leur joueur
+String[] scores = {"0", "0", "0", "0", "0"}; //contient les 5 meilleurs scores puis leur joueur
 int vitesse = 10;
 Ecran m = new MenuDepart();
 float deplacementX;
@@ -14,6 +14,7 @@ float w2;// position du plateau du joueur 2 sur l'axe x
 float z2;// position du plateau du joueur 2 sur l'axe y
 int scoreJeu;
 int temps;
+String pseudo;
 
 // paramètres
 float vitessedepX;
@@ -22,7 +23,7 @@ float vitesseraquette;
 float tailleraquette;
 float incrementationballe;
 
-void setup(){
+void setup() {
   fullScreen();
   dimBouton[0] = width/1.5;
   dimBouton[1] = height/4.5;
@@ -44,14 +45,14 @@ void setup(){
   vitesseraquette = 8;
   tailleraquette=50;
   incrementationballe =1.05;
-  
+
   BufferedReader reader = createReader("scores");
-  try{
-    for(int i = 0; i<10; i++){
-        scores[i] = reader.readLine();
-      }
+  try {
+    for (int i = 0; i<5; i++) {
+      scores[i] = reader.readLine();
     }
-  catch(IOException e){
+  }
+  catch(IOException e) {
     vitesse = 10;
   }
   background(couleurs[1]);
@@ -61,7 +62,7 @@ void setup(){
 } 
 
 
-void draw(){
+void draw() {
   m.afficher();
   m.interagir();
 }

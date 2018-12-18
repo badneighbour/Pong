@@ -73,9 +73,13 @@ public class MenuScores extends Menu {
   public void afficher() {
     super.afficheBouton(3, "Retour");
     for (int i = 0; i<5; i++) {
-      text(scores[i], (2*width-dimBouton[2])/4, (i+1)*height/10);
-      text(scores[i+5], (2*width+dimBouton[2])/4, (i+1)*height/10);
+      text(scores[i], (2*width+dimBouton[2])/4, (i+1)*height/10);
     }
+    text("1er", (2*width-dimBouton[2])/4, height/10);
+    text("2e",(2*width-dimBouton[2])/4, 2*height/10);
+    text("3e",(2*width-dimBouton[2])/4, 3*height/10);
+    text("4e",(2*width-dimBouton[2])/4, 4*height/10);
+    text("5e",(2*width-dimBouton[2])/4, 5*height/10);
   }
 
   public void interagir() {
@@ -101,10 +105,6 @@ public class MenuOptions extends Menu {
       scores[i] = "0";
       output.println("0");
     }
-    for (int i = 0; i < 5; i++) {
-      scores[i+5] = "-";
-      output.println("-");
-    }
     output.flush(); // Writes the remaining data to the file
     output.close(); // Finishes the file
   }
@@ -117,56 +117,54 @@ public class MenuOptions extends Menu {
       if (super.cliqueBouton(2)) {
         this.reinitialiserScores();
       }
-      if (super.cliqueBouton(1)){m=new MenuDifficulte();}
+      if (super.cliqueBouton(1)) {
+        m=new MenuDifficulte();
+      }
     }
     super.interagir();
   }
 
 
 
-//
-public class MenuDifficulte extends Menu{
-  public void afficher() {
+  //
+  public class MenuDifficulte extends Menu {
+    public void afficher() {
 
-    super.afficheBouton(1, "Facile");
-    super.afficheBouton(2, "Moyen");
-    super.afficheBouton(3, "Difficile");
-  }
-  
-  public void interagir(){
-    if (mousePressed && !mouseHasBeenPressed) {
-      if (super.cliqueBouton(1)) {
+      super.afficheBouton(1, "Facile");
+      super.afficheBouton(2, "Moyen");
+      super.afficheBouton(3, "Difficile");
+    }
+
+    public void interagir() {
+      if (mousePressed && !mouseHasBeenPressed) {
+        if (super.cliqueBouton(1)) {
           vitessedepX= 4;
           vitessedepY= 2;
           vitesseraquette = 10;
           tailleraquette=60;
           incrementationballe =1.05;
           m = new MenuDepart();
-      }
-      if (super.cliqueBouton(2)) {
+        }
+        if (super.cliqueBouton(2)) {
           vitessedepX= 6;
           vitessedepY= 3;
           vitesseraquette = 8;
           tailleraquette=50;
           incrementationballe =1.1;
           m = new MenuDepart();
-      }
-      if (super.cliqueBouton(3)){
+        }
+        if (super.cliqueBouton(3)) {
           vitessedepX= 8;
           vitessedepY= 4;
           vitesseraquette = 5;
           tailleraquette=45;
           incrementationballe =1.15;
           m = new MenuDepart();
+        }
+      }
+      super.interagir();
     }
-    }
-    super.interagir();
   }
-
-  
-  }
-  
-
 }
 
 
@@ -185,41 +183,10 @@ public class MenuModesDeJeu extends Menu {
         m = new MenuDepart();
       } else if (super.cliqueBouton(1)) {
         m = new Compte_a_rebours(1);
-      }
-      else if (super.cliqueBouton(2)){
-      m = new Compte_a_rebours(2);
+      } else if (super.cliqueBouton(2)) {
+        m = new Compte_a_rebours(2);
       }
     }
     super.interagir();
-  }
-}
-
-//Ecran qui sert à enregistrer le score si besoin 
-public class EnregistrementScore extends Ecran {
-  int rangScore;
-  String pseudonyme;
-  
-  public EnregistrementScore(int rangScore) {
-    super();
-    this.rangScore = rangScore;
-    this.pseudonyme = "";
-    KetaiKeyboard.toggle(papplet);
-  }
-  public void afficher() {
-    background(couleurs[1]);
-  }
-
-  public void interagir() {
-    if(keyPressed){
-      if(key == ENTER){
-        m = new MenuDepart();
-      }
-      else if(key == '\b' && pseudonyme.length() > 0){
-        pseudonyme = pseudonyme.substring(0, pseudonyme.length());
-      }
-      else if(key >= 'a' && key <= 'z'){
-        pseudonyme += key;
-      }
-    }
   }
 }
