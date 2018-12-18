@@ -182,7 +182,8 @@ public class JeuDeux extends Ecran {
     
     x=width/2;
     y=height/2;
-    deplacementX=vitessedepX;
+    float p= random(1);
+    if (p>0.5) {deplacementX=-vitessedepX ;} else {deplacementX=vitessedepX ;}
     float r= random(1);
     if (r>0.5) {deplacementY=-vitessedepY ;} else {deplacementY=vitessedepY ;}
     
