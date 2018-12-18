@@ -1,4 +1,3 @@
-PApplet papplet = this;
 color[] couleurs = {color(0, 0, 0), color(230, 190, 0)}; // contient la couleur de premier plan et la couleur de fond
 float[] dimBouton = new float[4]; //contient les largeurs et les hauteurs exterieures et interieures d'un bouton de menu
 String[] scores = {"0", "0", "0", "0", "0"}; //contient les 5 meilleurs scores puis leur joueur
@@ -14,7 +13,6 @@ float w2;// position du plateau du joueur 2 sur l'axe x
 float z2;// position du plateau du joueur 2 sur l'axe y
 int scoreJeu;
 int temps;
-String pseudo;
 
 // paramètres
 float vitessedepX;
