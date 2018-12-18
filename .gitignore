@@ -15,5 +15,7 @@ application.windows32
 application.windows64
 application.macosx
 *.xml
+android
+*.autosave
 code
 >>>>>>> branch 'master' of https://github.com/badneighbour/Pong.git
