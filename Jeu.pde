@@ -40,11 +40,9 @@ public class Jeu extends Ecran {
     
     smooth();
     ellipseMode(CENTER);
-    //fill(255);
-    //text(scoreJeu,width/2, height/10);
     fill(255);
+    text(scoreJeu,width/2, height/10);
     rect (w, z, 25, 2*tailleraquette);
-    fill(255);
     ellipse(x, y, 20, 20);
     line(width/2, 0, width/2, height);
     stroke(153);
@@ -256,9 +254,7 @@ public class JeuDeux extends Ecran {
 
     fill(255);
     rect (w, z, 25, 2*tailleraquette);
-    fill(255);
     rect(w2, z2, 25, 2*tailleraquette);
-    fill(255);
     ellipse(x, y, 20, 20);
     line(width/2, 0, width/2, height);
     stroke(153);

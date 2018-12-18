@@ -43,6 +43,7 @@ void setup() {
   temps = millis();
   scoreJ1=0;
   scoreJ2=0;
+  nombrePoint=5;
   // paramètres
   vitessedepX= 6;
   vitessedepY= 3;
