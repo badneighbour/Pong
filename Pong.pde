@@ -13,6 +13,8 @@ float w2;// position du plateau du joueur 2 sur l'axe x
 float z2;// position du plateau du joueur 2 sur l'axe y
 int scoreJeu;
 int temps;
+int scoreJ1;
+int scoreJ2;
 
 // paramètres
 float vitessedepX;
@@ -37,6 +39,8 @@ void setup() {
   z2=60;
   scoreJeu=0;
   temps = millis();
+  scoreJ1=0;
+  scoreJ2=0;
   // paramètres
   vitessedepX= 6;
   vitessedepY= 3;
