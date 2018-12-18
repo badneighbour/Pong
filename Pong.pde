@@ -25,6 +25,7 @@ float incrementationballe;
 
 void setup() {
   fullScreen();
+  orientation(LANDSCAPE);
   dimBouton[0] = width/1.5;
   dimBouton[1] = height/4.5;
   dimBouton[2] = dimBouton[0] * 0.96;
