@@ -1,4 +1,3 @@
-import ketai.ui.*;
 //La classe Menu représente les menus qui s'affichent à l'écran avant d'entrer dans le jeu
 public abstract class Menu extends Ecran {
 
