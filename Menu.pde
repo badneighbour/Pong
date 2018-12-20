@@ -137,16 +137,16 @@ public class MenuOptions extends Menu {
     public void interagir() {
       if (mousePressed && !mouseHasBeenPressed) {
         if (super.cliqueBouton(1)) {
-          vitessedepX= 4;
-          vitessedepY= 2;
+          vitessedepX= 6;
+          vitessedepY= 3;
           vitesseraquette = 10;
           tailleraquette=60;
           incrementationballe =1.05;
           m = new MenuDepart();
         }
         if (super.cliqueBouton(2)) {
-          vitessedepX= 6;
-          vitessedepY= 3;
+          vitessedepX= 8;
+          vitessedepY= 4;
           vitesseraquette = 8;
           tailleraquette=50;
           incrementationballe =1.1;
@@ -155,7 +155,8 @@ public class MenuOptions extends Menu {
         if (super.cliqueBouton(3)) {
           vitessedepX= 8;
           vitessedepY= 4;
-          vitesseraquette = 5;
+          
+          vitesseraquette = 8;
           tailleraquette=45;
           incrementationballe =1.15;
           m = new MenuDepart();
