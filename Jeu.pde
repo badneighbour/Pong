@@ -107,16 +107,17 @@ public class GameOver extends Ecran {
   int mode;
   public GameOver(int prece) {
     super();
-    mode= precedant;
+    mode= prece;
   }
-  public void afficher() {
-    if (mode==1) {
-      text("Game Over, votre score est de :"+scoreJeu, width/2, height/2);
-    } else {
-      if (scoreJ1>scoreJ2) {
-        text("Bravo au Joueur 1 !", width/2, height/2);
-      } else {
-        text("Bravo au Joueur 2 !"+scoreJeu, width/2, height/2);
+  
+    public void afficher() {
+    if (mode==1){
+    text("Game Over, votre score est de :"+scoreJeu, width/2, height/2);}
+    else {if (scoreJ1>scoreJ2){
+              text("Bravo au Joueur 1 !", width/2, height/2);}
+          else {
+               text("Bravo au Joueur 2 !", width/2, height/2);}
+
       }
     }
   };
