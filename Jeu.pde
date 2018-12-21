@@ -10,13 +10,12 @@ public class Jeu extends Ecran {
    */
   public Jeu () {
     super(); 
-    
+
     x=width/2;
     y=height/2;
     deplacementX=vitessedepX;
     deplacementY=-vitessedepY;
     scoreJeu=0;
-    
   }
 
 
@@ -37,16 +36,15 @@ public class Jeu extends Ecran {
   }
 
   void dessiner() {
-    
+
     smooth();
     ellipseMode(CENTER);
     fill(255);
-    text(scoreJeu,width/2, height/10);
+    text(scoreJeu, width/2, height/10);
     rect (w, z, 25, 2*tailleraquette);
     ellipse(x, y, 20, 20);
     line(width/2, 0, width/2, height);
     stroke(153);
-    
   }
 
 
@@ -106,19 +104,21 @@ public class Jeu extends Ecran {
 
 // classe permettant d'afficher le game over
 public class GameOver extends Ecran {
-int mode;
+  int mode;
   public GameOver(int prece) {
     super();
     mode= precedant;
   }
-    public void afficher() {
-    if (mode==1){
-    text("Game Over, votre score est de :"+scoreJeu, width/2, height/2);}
-    else {if (scoreJ1>scoreJ2){
-              text("Bravo au Joueur 1 !", width/2, height/2);}
-          else {
-               text("Bravo au Joueur 2 !"+scoreJeu, width/2, height/2);}
+  public void afficher() {
+    if (mode==1) {
+      text("Game Over, votre score est de :"+scoreJeu, width/2, height/2);
+    } else {
+      if (scoreJ1>scoreJ2) {
+        text("Bravo au Joueur 1 !", width/2, height/2);
+      } else {
+        text("Bravo au Joueur 2 !"+scoreJeu, width/2, height/2);
       }
+    }
   };
   public void interagir() {
     if (mousePressed) {
@@ -140,9 +140,10 @@ public class Compte_a_rebours extends Ecran {
     modesuivant = mode;
   }
   void dessiner() {
-   if (modesuivant==2){
-        text(scoreJ1,width/2-width/10, height/10);
-        text(scoreJ2,width/2+width/10, height/10);}
+    if (modesuivant==2) {
+      text(scoreJ1, width/2-width/10, height/10);
+      text(scoreJ2, width/2+width/10, height/10);
+    }
     smooth();
     ellipseMode(CENTER);
 
@@ -154,7 +155,6 @@ public class Compte_a_rebours extends Ecran {
     if (modesuivant==2) {
       fill(255);
       rect(w2, z2, 25, 2*tailleraquette);
-      
     }
   }
 
@@ -187,14 +187,21 @@ public class Compte_a_rebours extends Ecran {
 public class JeuDeux extends Ecran {
   public JeuDeux () {
     super(); 
-    
+
     x=width/2;
     y=height/2;
     float p= random(1);
-    if (p>0.5) {deplacementX=-vitessedepX ;} else {deplacementX=vitessedepX ;}
+    if (p>0.5) {
+      deplacementX=-vitessedepX ;
+    } else {
+      deplacementX=vitessedepX ;
+    }
     float r= random(1);
-    if (r>0.5) {deplacementY=-vitessedepY ;} else {deplacementY=vitessedepY ;}
-    
+    if (r>0.5) {
+      deplacementY=-vitessedepY ;
+    } else {
+      deplacementY=vitessedepY ;
+    }
   }
 
   public void interagir() {
@@ -259,8 +266,8 @@ public class JeuDeux extends Ecran {
 
   //Permet de dessiner la balle les plateaux et la ligne centrale
   void dessiner() {
-    text(scoreJ1,width/2-width/10, height/10);
-    text(scoreJ2,width/2+width/10, height/10);
+    text(scoreJ1, width/2-width/10, height/10);
+    text(scoreJ2, width/2+width/10, height/10);
     smooth();
     ellipseMode(CENTER);
 
@@ -270,7 +277,6 @@ public class JeuDeux extends Ecran {
     ellipse(x, y, 20, 20);
     line(width/2, 0, width/2, height);
     stroke(153);
-    
   }
 
   void rebondir() {
@@ -304,15 +310,23 @@ public class JeuDeux extends Ecran {
       deplacementX=deplacementX*incrementationballe;
       deplacementY=deplacementY*incrementationballe;
       deplacementY = deplacementY + random(-1, 1);
-      
     }
     //si on depasse le plateau
-    if (x<=0){scoreJ2++;if (scoreJ2<nombrePoint){
-    m = new Compte_a_rebours(2);}
-  else {m = new GameOver(2);}}
-    if (x>width){scoreJ1++;if (scoreJ1<nombrePoint){
-    m = new Compte_a_rebours(2);}
-  else {m = new GameOver(2);}}
-    
+    if (x<=0) {
+      scoreJ2++;
+      if (scoreJ2<nombrePoint) {
+        m = new Compte_a_rebours(2);
+      } else {
+        m = new GameOver(2);
+      }
+    }
+    if (x>width) {
+      scoreJ1++;
+      if (scoreJ1<nombrePoint) {
+        m = new Compte_a_rebours(2);
+      } else {
+        m = new GameOver(2);
+      }
+    }
   }
 }
