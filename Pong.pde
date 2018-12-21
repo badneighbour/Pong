@@ -1,6 +1,6 @@
 color[] couleurs = {color(0, 0, 0), color(230, 190, 0)}; // contient la couleur de premier plan et la couleur de fond
 float[] dimBouton = new float[4]; //contient les largeurs et les hauteurs exterieures et interieures d'un bouton de menu
-String[] scores = {"0", "0", "0", "0", "0"}; //contient les 5 meilleurs scores puis leur joueur
+int[] scores = {0, 0, 0, 0, 0}; //contient les 5 meilleurs scores puis leur joueur
 int vitesse = 10;
 Ecran m = new MenuDepart();
 float deplacementX;
@@ -54,10 +54,10 @@ void setup() {
   BufferedReader reader = createReader("scores");
   try {
     for (int i = 0; i<5; i++) {
-      scores[i] = reader.readLine();
+      scores[i] = parseInt(reader.readLine());
     }
   }
-  catch(IOException e) {
+  catch(Exception e) {
     vitesse = 10;
   }
   background(couleurs[1]);

@@ -101,7 +101,7 @@ public class MenuOptions extends Menu {
   public void reinitialiserScores() {
     PrintWriter output = createWriter("scores");
     for (int i = 0; i < 5; i++) {
-      scores[i] = "0";
+      scores[i] = 0;
       output.println("0");
     }
     output.flush(); // Writes the remaining data to the file
@@ -145,16 +145,16 @@ public class MenuOptions extends Menu {
           m = new MenuDepart();
         }
         if (super.cliqueBouton(2)) {
-          vitessedepX= 8;
-          vitessedepY= 4;
+          vitessedepX= 10;
+          vitessedepY= 5;
           vitesseraquette = 8;
           tailleraquette=50;
           incrementationballe =1.1;
           m = new MenuDepart();
         }
         if (super.cliqueBouton(3)) {
-          vitessedepX= 8;
-          vitessedepY= 4;
+          vitessedepX= 10;
+          vitessedepY= 5;
           
           vitesseraquette = 8;
           tailleraquette=45;

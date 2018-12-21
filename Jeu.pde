@@ -10,12 +10,11 @@ public class Jeu extends Ecran {
    */
   public Jeu () {
     super(); 
-
+    scoreJeu = 0;
     x=width/2;
     y=height/2;
     deplacementX=vitessedepX;
     deplacementY=-vitessedepY;
-    scoreJeu=0;
   }
 
 
@@ -108,11 +107,25 @@ public class GameOver extends Ecran {
   public GameOver(int prece) {
     super();
     mode= prece;
+    int i=0;
+    int scoreJ = scoreJeu;
+    PrintWriter output = createWriter("scores");
+    while(i<5){
+      if(scores[i]<scoreJ){
+        int x = scores[i];
+        scores[i]=scoreJ;
+        scoreJ = x;
+      }
+      output.println(scores[i]);
+      i++;
+    }
+    output.flush(); // Writes the remaining data to the file
+    output.close(); // Finishes the file
   }
   
     public void afficher() {
     if (mode==1){
-    text("Game Over, votre score est de :"+scoreJeu, width/2, height/2);}
+    text("Game Over, votre score est de : "+scoreJeu, width/2, height/2);}
     else {if (scoreJ1>scoreJ2){
               text("Bravo au Joueur 1 !", width/2, height/2);}
           else {
@@ -120,7 +133,7 @@ public class GameOver extends Ecran {
 
       }
     }
-  };
+    
   public void interagir() {
     if (mousePressed) {
       m=new MenuDepart();
